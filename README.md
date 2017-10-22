@@ -39,12 +39,20 @@ sudo cp -r etc/svxlink/* /etc/svxlink/
 sudo cp etc/rc.local /etc/rc.local
 ```
 - Check and match GPIO ports for Squelch and PTT.
+- For SVXLink autostart:
+```
+sudo cp opt/svx.sh /opt/svx.sh
+sudo chmod +x /opt/svx.sh
+```
+- Add @lxterminal -l -e "/opt/svx.sh" BEFORE xscreensaver line on .config/lxsession/LXDE-pi/autostart
+
 
 ### Software reset
 - There is a Python script that handles Raspberry PI reboots from a hardware switch without killing power.
 - Check the /etc/rc.local file and match the desired GPIO port for this task.
 - Copy lib/systemd/system/reset.service to /lib/systemd/system/reset.service
 ```
+sudo cp opt/reset.py /opt/reset.py
 sudo cp lib/systemd/system/reset.service to /lib/systemd/system/reset.service
 chmod 644 /lib/systemd/system/reset.service
 systemctl enable reset.service
