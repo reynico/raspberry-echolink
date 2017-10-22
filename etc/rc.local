@@ -1,0 +1,23 @@
+#!/bin/sh -e
+#Enable the pin for PTT GPIO:
+echo "12" > /sys/class/gpio/export
+echo out > /sys/class/gpio/gpio12/direction
+#Make sure that the svxlink user can write to the GPIO pin:
+chmod 0777 /sys/class/gpio/gpio12/value
+
+#Squelch control
+echo "20" > /sys/class/gpio/export
+echo in > /sys/class/gpio/gpio20/direction
+echo 1 > /sys/class/gpio/gpio20/active_low
+
+#Soft reboot by hardware
+echo "21" > /sys/class/gpio/export
+echo in > /sys/class/gpio/gpio21/direction
+
+# Print the IP address
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  printf "My IP address is %s\n" "$_IP"
+fi
+
+exit 0

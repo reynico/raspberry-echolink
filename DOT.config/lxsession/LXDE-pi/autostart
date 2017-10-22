@@ -1,0 +1,5 @@
+@lxpanel --profile LXDE-pi
+@pcmanfm --desktop --profile LXDE-pi
+@lxterminal -l -e "/opt/svx.sh"
+@xscreensaver -no-splash
+@point-rpi
